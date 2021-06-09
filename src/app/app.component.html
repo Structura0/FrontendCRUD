@@ -1,0 +1,125 @@
+<header>
+    <div class="fixed-top">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+
+                <a mat-icon-button style="color: #ffffff" [routerLink]="['inicio']">
+                    <h2>Hulk Store</h2>
+                </a>
+                <img src="55.png" height="200" alt="100px" overflow:hidden margin=10 padding=10>
+
+
+                <span class="example-spacer"></span>
+                <div class="ident">
+
+                    <div *ngIf="identity">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>{{identity.userName}}</span>
+
+                    </div>
+                </div>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+
+                    <button mat-menu-item [routerLink]="['login']" *ngIf="!identity">
+                        <mat-icon>fingerprint</mat-icon>
+                        <span >Inicio sesión</span>
+                    </button>
+
+
+
+                    <button mat-menu-item (click)="logout()" *ngIf="identity">
+                        <mat-icon>power_settings_new</mat-icon>
+                        <span >Cierre sesión</span>
+                 </button>
+
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['/pedidos/',identity.userName]" *ngIf="identity.rol == 'user'">
+                    <mat-icon>local_grocery_store</mat-icon>
+                    <span >Compras</span>
+                </button>
+                    </div>
+
+
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['seguridad']" *ngIf="identity.rol == 'admi'">
+                        <mat-icon>verified_user</mat-icon>
+                        <span >Seguridad</span>
+                    </button>
+                    </div>
+
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['ventas']" *ngIf="identity.rol == 'admi'">
+                        <mat-icon>stacked_line_chart</mat-icon>
+                        <span >Ver Ventas</span>
+                    </button>
+                    </div>
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['compras']" *ngIf="identity.rol == 'admi'">
+                        <mat-icon>sticky_note_2</mat-icon>
+                        <span >Registrar Compras</span>
+                    </button>
+                    </div>
+
+
+
+
+
+
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['categoria']" *ngIf="identity.rol == 'admi'">
+                        <mat-icon>view_quilt</mat-icon>
+                        <span> Agregar Categoria </span>
+                    </button>
+                    </div>
+
+                    <div *ngIf="identity">
+                        <button mat-menu-item [routerLink]="['producto']" *ngIf="identity.rol == 'admi'">
+                        <mat-icon>equalizer</mat-icon>
+                        <span>Agregar producto </span>
+                    </button>
+                    </div>
+
+                    <div *ngIf=" identity ">
+                        <button mat-menu-item [routerLink]="['inicio']">
+                        <mat-icon>home</mat-icon>
+                        <span>Inicio</span>
+
+                    </button>
+                    </div>
+                    <button mat-menu-item [routerLink]="['registro']" *ngIf="!identity">
+                        <mat-icon>person_add</mat-icon>
+                        <span >Regístrate</span>
+                    </button>
+
+                </mat-menu>
+
+            </mat-toolbar-row>
+
+
+        </mat-toolbar>
+
+
+    </div>
+</header>
+
+
+<main role="main ">
+    <router-outlet></router-outlet>
+
+</main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<app-footer></app-footer>
